@@ -1,4 +1,5 @@
-from . import http, errors
+from req import http
+from err import errors
 import re, random
 
 no_response = "Couldn't contact the API right now..."

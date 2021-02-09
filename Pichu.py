@@ -2,7 +2,8 @@ from hata import Client, Guild, sleep, Embed, Color, Emoji
 from hata.ext.slash import setup_ext_slash
 from dotenv import load_dotenv
 from random import random, choice
-from utilities import NekoFacts, neko 
+from data import nekofacts
+from cmd import neko 
 import os
 
 # loading the .env file
@@ -26,7 +27,7 @@ async def ready(client):
 async def catfact(client, event, search: ('str', 'search using the keyword') = None):
     """ask me purrr!"""
 
-    CAT_FACTS = NekoFacts.neko_facts()
+    CAT_FACTS = nekofacts.neko_facts()
     CAT_FACT_COLOR = Color.from_rgb(246, 211, 60)
     cat_sad = Emoji.precreate(os.environ.get('CAT_SAD'))
 
