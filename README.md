@@ -15,13 +15,13 @@ NEKO_PEEK = 0		  # neko peek emoji's id (int).
 ```
 
 
-## Commands
-- /cat
-- /catfact
-- /nekogirl
-- /owoify
-- /textcat
-- /why
+## Features
+- /cat: This will give a random cat image.
+- /catfact: This will give a random cat fact. It has an optional search for a particular cat fact from the `CAT_FACTS`.
+- /nekogirl: This will give you a random nekogirl image.
+- /owoify: If you give a text, this is convert into owoify text.
+- /textcat: Sends a random cat texts
+- /why: Why did I added this? :p
 
 
 ## Requirements
