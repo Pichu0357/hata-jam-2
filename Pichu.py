@@ -3,7 +3,7 @@ from hata.ext.slash import setup_ext_slash
 from dotenv import load_dotenv
 from random import random, choice
 from data import nekofacts
-from cmd import neko 
+from cmds import neko 
 import os
 
 # loading the .env file
