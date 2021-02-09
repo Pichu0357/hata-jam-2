@@ -24,9 +24,11 @@ Neko_Peek = Emoji.precreate(os.environ.get("NEKO_PEEK"))
 CAT_FACT_COLOR = Color.from_html('#F6D33C')
 OwO_COLOR = Color.from_html('#FF69B4')
 NEKOGIRL_COLOR = Color.from_html('#FFB6C1')
+CAT_COLOR = Color.from_html('#000000')
 
 # data
 CAT_FACTS = nekofacts.neko_facts()
+
 
 # connecting to the client
 @Pichu.events
@@ -78,7 +80,7 @@ async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
 
 @Pichu.interactions(guild=GUILD)
 async def nekogirl(client, event):
-    """Wanna see nekogirls? OwO"""
+    """wanna see nekogirls? OwO"""
     return Embed(f"Here is your nekogirl {Neko_Peek:e}", color=NEKOGIRL_COLOR).\
         add_image(neko.nekogirl())
 
@@ -87,6 +89,13 @@ async def nekogirl(client, event):
 async def why(client, event):
     """Why are you using this commands?"""
     return neko.why()
+
+
+@Pichu.interactions(guild=GUILD)
+async def cat(client, event):
+    """I will be good neko! moo!"""
+    return Embed(f"Here is your cat :cat:", color=CAT_COLOR).\
+        add_image(neko.cat())
 
 
 # starting the bot

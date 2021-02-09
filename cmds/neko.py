@@ -45,7 +45,14 @@ def owoify(owomsg):
 
 def nekogirl():
     try:
-        r = http.get("/img/" + "neko")
+        r = http.get("/img/neko")
     except Exception as e:
         raise errors.NothingFound(no_response)
     return r["url"]
+
+
+def cat():
+    try:
+        return http.get("/img/meow")["url"]
+    except Exception as e:
+        raise errors.NothingFound(no_response)
