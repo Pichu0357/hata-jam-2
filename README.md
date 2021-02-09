@@ -1,4 +1,4 @@
-# hata-code-jam2
+# hata-jam-2
 Making slash commands for hata code jam 2 (related with nekogirl or cat).
 
 
@@ -15,13 +15,16 @@ NEKO_PEEK = 0		  # neko peek emoji's id (int).
 ```
 
 
+## Commands
+- /catfact
+- /nekogirl
+- /owoify
+- /textcat
+- /why
+
+
 ## Requirements
 The following packages are required to setting up Pichu-bot,
 - [hata](https://www.github.com/HuyaneMatsu/hata)
 - [dotenv](https://pypi.org/project/python-dotenv/)
 - python3.9.1 or higher
-
-
-## Acknowledgment
-- [HuyaneMatsu#2016](https://www.github.com/HuyaneMatsu)
-
