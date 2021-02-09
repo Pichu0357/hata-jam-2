@@ -2,8 +2,7 @@ from hata import Client, Guild, sleep, Embed, Color, Emoji
 from hata.ext.slash import setup_ext_slash
 from dotenv import load_dotenv
 from random import random, choice
-from cmds import neko 
-import os
+import os, re
 
 # loading the .env file
 load_dotenv()
@@ -144,6 +143,46 @@ CAT_FACTS = [
 
     ]
 
+# API
+BASE_URL = 'https://nekos.life/api/v2'
+HTTP = Pichu.http
+
+# owoify text
+_str_emojis = [
+    "꒰◍ᐡᐤᐡ◍꒱",
+    "{ @❛ꈊ❛@ }",
+    "6(◦･ω･◦)9",
+    "UwU",
+    "OwO",
+    "@w@",
+    "◕w◕"
+]
+
+def owo(*, txt: str, ending_emoji: bool = False) -> str:
+    """
+    `txt`: The text you wish to 'owoify'
+    `ending_emoji`: Whether you wish to add an
+    emoji at the end of your text to make it 
+    especially stand out 
+    """
+
+    replacements = {
+        r"(?:l|r)": "w",
+        r'(?:L|R)': "W",
+        r'n([aeiou])': "ny",
+        r'N([aeiou])|N(AEIOU)': "Ny",
+        r"ove": "uv",
+        r'nd(?= |$)': "ndo"
+    }
+
+    for pattern, replacement in list(replacements.items()):
+        txt = re.sub(pattern=pattern, repl=replacement, string=txt)
+
+    if ending_emoji:
+        txt += " " + choice(_str_emojis)
+
+    return txt
+
 
 # connecting to the client
 @Pichu.events
@@ -181,36 +220,65 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
 @Pichu.interactions(guild=GUILD)
 async def textcat(client, event):
     """I will send textcats :3"""
-    return neko.textcat()
+    try:
+        async with HTTP.get(BASE_URL+'/cat') as response:
+            if response.status != 200:
+                return "Couldn't contact the API right now..."
+            data = await response.json()
+        return data['cat']
+    except (OSError, ConnectionError):
+        return None
 
 
 @Pichu.interactions(guild=GUILD)
 async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
     """owoify :3"""
+    
     return Embed( color=OwO_COLOR).\
         add_field("Original:", text).\
-        add_field("OwOify Text:", neko.owoify(text)).\
+        add_field("OwOify Text:", owo(txt=text, ending_emoji=True)).\
         add_footer("purrr!!!")
 
 
 @Pichu.interactions(guild=GUILD)
 async def nekogirl(client, event):
     """wanna see nekogirls? OwO"""
-    return Embed(f"Here is your nekogirl {Neko_Peek:e}", color=NEKOGIRL_COLOR).\
-        add_image(neko.nekogirl())
+    try:
+        async with HTTP.get(BASE_URL+'/img/neko') as response:
+            if response.status != 200:
+                return "Couldn't contact the API right now..."
+            data = await response.json()
+        return Embed(f"Here is your nekogirl {Neko_Peek:e}", color=NEKOGIRL_COLOR).\
+            add_image(data['url'])
+    except (OSError, ConnectionError):
+        return None
 
 
 @Pichu.interactions(guild=GUILD)
 async def why(client, event):
     """Why are you using this commands?"""
-    return neko.why()
+    try:
+        async with HTTP.get(BASE_URL+'/why') as response:
+            if response.status != 200:
+                return "Couldn't contact the API right now..."
+            data = await response.json()
+        return data['why']
+    except (OSError, ConnectionError):
+        return None
 
 
 @Pichu.interactions(guild=GUILD)
 async def cat(client, event):
     """I will be good neko! moo!"""
-    return Embed(f"Here is your cat :cat:", color=CAT_COLOR).\
-        add_image(neko.cat())
+    try:
+        async with HTTP.get(BASE_URL+'/img/meow') as response:
+            if response.status != 200:
+                return "Couldn't contact the API right now..."
+            data = await response.json()
+        return Embed(f"Here is your cat :cat:", color=CAT_COLOR).\
+            add_image(data['url'])
+    except (OSError, ConnectionError):
+        return None
 
 
 # starting the bot
