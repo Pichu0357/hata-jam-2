@@ -16,7 +16,7 @@ GUILD = Guild.precreate(os.environ.get('GUILD_ID'))
 Pichu = Client(Token, application_id=APPLICATION_ID)
 setup_ext_slash(Pichu)
 
-# Emotes
+# emotes
 Cat_Sad = Emoji.precreate(os.environ.get('CAT_SAD'))
 Neko_Peek = Emoji.precreate(os.environ.get("NEKO_PEEK"))
 
@@ -25,6 +25,8 @@ CAT_FACT_COLOR = Color.from_html('#F6D33C')
 OwO_COLOR = Color.from_html('#FF69B4')
 NEKOGIRL_COLOR = Color.from_html('#FFB6C1')
 
+# data
+CAT_FACTS = nekofacts.neko_facts()
 
 # connecting to the client
 @Pichu.events
@@ -35,8 +37,6 @@ async def ready(client):
 @Pichu.interactions(guild=GUILD)
 async def catfact(client, event, search: ('str', 'search using the keyword') = None):
     """ask me purrr!"""
-
-    CAT_FACTS = nekofacts.neko_facts()
 
     if search is None:
         yield Embed("Here is your cat fact :cat:", description=choice(CAT_FACTS), color=CAT_FACT_COLOR)

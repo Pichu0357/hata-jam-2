@@ -1,0 +1,6 @@
+### Python ###
+# Byte-commpiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
