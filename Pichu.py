@@ -16,6 +16,15 @@ GUILD = Guild.precreate(os.environ.get('GUILD_ID'))
 Pichu = Client(Token, application_id=APPLICATION_ID)
 setup_ext_slash(Pichu)
 
+# Emotes
+Cat_Sad = Emoji.precreate(os.environ.get('CAT_SAD'))
+Neko_Peek = Emoji.precreate(os.environ.get("NEKO_PEEK"))
+
+# colors
+CAT_FACT_COLOR = Color.from_html('#F6D33C')
+OwO_COLOR = Color.from_html('#FF69B4')
+NEKOGIRL_COLOR = Color.from_html('#FFB6C1')
+
 
 # connecting to the client
 @Pichu.events
@@ -28,8 +37,6 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
     """ask me purrr!"""
 
     CAT_FACTS = nekofacts.neko_facts()
-    CAT_FACT_COLOR = Color.from_rgb(246, 211, 60)
-    cat_sad = Emoji.precreate(os.environ.get('CAT_SAD'))
 
     if search is None:
         yield Embed("Here is your cat fact :cat:", description=choice(CAT_FACTS), color=CAT_FACT_COLOR)
@@ -48,7 +55,7 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
             yield Embed("Here is your cat fact :cat:", description=choice(matching), color=CAT_FACT_COLOR)
 
         else:
-            yield f"{cat_sad:e} sowwy, couldn't find"
+            yield f"{Cat_Sad:e} sowwy, couldn't find"
 
         # cleaning the list
         del matching
@@ -63,7 +70,6 @@ async def textcat(client, event):
 @Pichu.interactions(guild=GUILD)
 async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
     """owoify :3"""
-    OwO_COLOR = Color.from_html("#FF69B4")
     return Embed( color=OwO_COLOR).\
         add_field("Original:", text).\
         add_field("OwOify Text:", neko.owoify(text)).\
@@ -73,9 +79,7 @@ async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
 @Pichu.interactions(guild=GUILD)
 async def nekogirl(client, event):
     """Wanna see nekogirls? OwO"""
-    NEKOGIRL_COLOR = Color.from_html("#FFB6C1")
-    NekoPeek = Emoji.precreate(os.environ.get("NEKO_PEEK"))
-    return Embed(f"Here is your nekogirl {NekoPeek:e}", color=NEKOGIRL_COLOR).\
+    return Embed(f"Here is your nekogirl {Neko_Peek:e}", color=NEKOGIRL_COLOR).\
         add_image(neko.nekogirl())
 
 
