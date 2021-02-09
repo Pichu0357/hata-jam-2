@@ -8,7 +8,7 @@ The Discord bot which is build in Hata no Kokoro's Discord API wrapper.
 While setting up Pichu-bot, create a `.env` file. it should contain following values
 ```py
 Token = ''                # bot token (str).
-APPLICATION_ID = ''       # application id (int).
+APPLICATION_ID = 0   	  # application id (int).
 GUILD_ID = 0              # guild id for slash commands (int).
 CAT_SAD = 0               # sad cat emoji's id (int).
 NEKO_PEEK = 0		  # neko peek emoji's id (int).
