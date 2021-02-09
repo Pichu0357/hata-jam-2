@@ -16,6 +16,7 @@ NEKO_PEEK = 0		  # neko peek emoji's id (int).
 
 
 ## Commands
+- /cat
 - /catfact
 - /nekogirl
 - /owoify
