@@ -216,10 +216,9 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
 
     else:
         # bot is thinking... :p
-        await client.interaction_response_message_create(event)
-        message = await client.interaction_followup_message_create(event, "*Thinking...*")
+        yield "*Thinking...*"
         await sleep(1.0 + random() * 4.0)
-        await client.interaction_followup_message_delete(event, message)
+        await client.interaction_response_message_delete(event)
 
         # finding the possible facts by using the keyword
         matching = [s for s in CAT_FACTS if search in s]
