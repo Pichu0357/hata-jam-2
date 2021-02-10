@@ -15,6 +15,7 @@ Pichu = Client(Token, application_id=APPLICATION_ID)
 setup_ext_slash(Pichu)
 
 # emotes
+CAT_FISH = Emoji.precreate(os.environ.get('CAT_FISH'))
 CAT_SAD = Emoji.precreate(os.environ.get('CAT_SAD'))
 CAT_WAY = Emoji.precreate(os.environ.get('CAT_WAY'))
 NEKOGIRL_KISS = Emoji.precreate(os.environ.get("NEKOGIRL_KISS"))
@@ -200,7 +201,7 @@ async def cat(client, event):
             if response.status != 200:
                 return "Couldn't contact the API right now..."
             data = await response.json()
-        return Embed(f"Here is your cat {CAT_WAY:e}", color=CAT_COLOR).\
+        return Embed(f"Here is your cat {CAT_FISH:e}", color=CAT_COLOR).\
             add_image(data['url'])
     except (OSError, ConnectionError):
         return None
