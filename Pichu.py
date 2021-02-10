@@ -250,7 +250,6 @@ async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
     """owoify :3"""
     
     return Embed( color=OwO_COLOR).\
-        add_field("Original:", text).\
         add_field("OwOify Text:", owo(txt=text, ending_emoji=True)).\
         add_footer("purrr!!!")
 
