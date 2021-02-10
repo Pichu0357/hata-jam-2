@@ -191,6 +191,20 @@ async def ready(client):
 
 
 @Pichu.interactions(guild=GUILD)
+async def cat(client, event):
+    """I will be good neko! moo!"""
+    try:
+        async with HTTP.get(BASE_URL+'/img/meow') as response:
+            if response.status != 200:
+                return "Couldn't contact the API right now..."
+            data = await response.json()
+        return Embed(f"Here is your cat :cat:", color=CAT_COLOR).\
+            add_image(data['url'])
+    except (OSError, ConnectionError):
+        return None
+
+
+@Pichu.interactions(guild=GUILD)
 async def catfact(client, event, search: ('str', 'search using the keyword') = None):
     """ask me purrr!"""
 
@@ -218,6 +232,30 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
 
 
 @Pichu.interactions(guild=GUILD)
+async def nekogirl(client, event):
+    """wanna see nekogirls? OwO"""
+    try:
+        async with HTTP.get(BASE_URL+'/img/neko') as response:
+            if response.status != 200:
+                return "Couldn't contact the API right now..."
+            data = await response.json()
+        return Embed(f"Here is your nekogirl {Neko_Peek:e}", color=NEKOGIRL_COLOR).\
+            add_image(data['url'])
+    except (OSError, ConnectionError):
+        return None
+        
+
+@Pichu.interactions(guild=GUILD)
+async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
+    """owoify :3"""
+    
+    return Embed( color=OwO_COLOR).\
+        add_field("Original:", text).\
+        add_field("OwOify Text:", owo(txt=text, ending_emoji=True)).\
+        add_footer("purrr!!!")
+
+
+@Pichu.interactions(guild=GUILD)
 async def textcat(client, event):
     """I will send textcats :3"""
     try:
@@ -231,30 +269,6 @@ async def textcat(client, event):
 
 
 @Pichu.interactions(guild=GUILD)
-async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
-    """owoify :3"""
-    
-    return Embed( color=OwO_COLOR).\
-        add_field("Original:", text).\
-        add_field("OwOify Text:", owo(txt=text, ending_emoji=True)).\
-        add_footer("purrr!!!")
-
-
-@Pichu.interactions(guild=GUILD)
-async def nekogirl(client, event):
-    """wanna see nekogirls? OwO"""
-    try:
-        async with HTTP.get(BASE_URL+'/img/neko') as response:
-            if response.status != 200:
-                return "Couldn't contact the API right now..."
-            data = await response.json()
-        return Embed(f"Here is your nekogirl {Neko_Peek:e}", color=NEKOGIRL_COLOR).\
-            add_image(data['url'])
-    except (OSError, ConnectionError):
-        return None
-
-
-@Pichu.interactions(guild=GUILD)
 async def why(client, event):
     """Why are you using this commands?"""
     try:
@@ -263,20 +277,6 @@ async def why(client, event):
                 return "Couldn't contact the API right now..."
             data = await response.json()
         return data['why']
-    except (OSError, ConnectionError):
-        return None
-
-
-@Pichu.interactions(guild=GUILD)
-async def cat(client, event):
-    """I will be good neko! moo!"""
-    try:
-        async with HTTP.get(BASE_URL+'/img/meow') as response:
-            if response.status != 200:
-                return "Couldn't contact the API right now..."
-            data = await response.json()
-        return Embed(f"Here is your cat :cat:", color=CAT_COLOR).\
-            add_image(data['url'])
     except (OSError, ConnectionError):
         return None
 
