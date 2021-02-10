@@ -229,9 +229,6 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
         else:
             yield f"{CAT_SAD:e} sowwy, couldn't find"
 
-        # cleaning the list
-        del matching
-
 
 @Pichu.interactions(guild=GUILD)
 async def nekogirl(client, event):
