@@ -15,8 +15,10 @@ Pichu = Client(Token, application_id=APPLICATION_ID)
 setup_ext_slash(Pichu)
 
 # emotes
-Cat_Sad = Emoji.precreate(os.environ.get('CAT_SAD'))
-Neko_Peek = Emoji.precreate(os.environ.get("NEKO_PEEK"))
+CAT_SAD = Emoji.precreate(os.environ.get('CAT_SAD'))
+CAT_WAY = Emoji.precreate(os.environ.get('CAT_WAY'))
+NEKOGIRL_KISS = Emoji.precreate(os.environ.get("NEKOGIRL_KISS"))
+NEKOGIRL_PEEK = Emoji.precreate(os.environ.get('NEKOGIRL_PEEK'))
 
 # colors
 CAT_FACT_COLOR = Color.from_html('#F6D33C')
@@ -222,10 +224,10 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
         matching = [s for s in CAT_FACTS if search in s]
 
         if matching:
-            yield Embed("Here is your cat fact :cat:", description=choice(matching), color=CAT_FACT_COLOR)
+            yield Embed(f"Here is your cat fact {CAT_WAY:e}", description=choice(matching), color=CAT_FACT_COLOR)
 
         else:
-            yield f"{Cat_Sad:e} sowwy, couldn't find"
+            yield f"{CAT_SAD:e} sowwy, couldn't find"
 
         # cleaning the list
         del matching
@@ -239,7 +241,7 @@ async def nekogirl(client, event):
             if response.status != 200:
                 return "Couldn't contact the API right now..."
             data = await response.json()
-        return Embed(f"Here is your nekogirl {Neko_Peek:e}", color=NEKOGIRL_COLOR).\
+        return Embed(f"Here is your nekogirl {NEKOGIRL_KISS:e}", color=NEKOGIRL_COLOR).\
             add_image(data['url'])
     except (OSError, ConnectionError):
         return None
@@ -247,10 +249,10 @@ async def nekogirl(client, event):
 
 @Pichu.interactions(guild=GUILD)
 async def owoify(client, event, text: ('str', 'Please, enter the message OwO')):
-    """owoify :3"""
+    """owoified text"""
     
     return Embed( color=OwO_COLOR).\
-        add_field("OwOify Text:", owo(txt=text, ending_emoji=True)).\
+        add_field(f"OwOified Text {NEKOGIRL_PEEK:e}", owo(txt=text, ending_emoji=True)).\
         add_footer("purrr!!!")
 
 
@@ -260,7 +262,7 @@ async def textcat(client, event):
     try:
         async with HTTP.get(BASE_URL+'/cat') as response:
             if response.status != 200:
-                return "Couldn't contact the API right now..."
+                return "Couldn't contact the API right now... OwO"
             data = await response.json()
         return data['cat']
     except (OSError, ConnectionError):
@@ -269,11 +271,11 @@ async def textcat(client, event):
 
 @Pichu.interactions(guild=GUILD)
 async def why(client, event):
-    """Why are you using this commands?"""
+    """why are you using this commands?"""
     try:
         async with HTTP.get(BASE_URL+'/why') as response:
             if response.status != 200:
-                return "Couldn't contact the API right now..."
+                return "Couldn't contact the API right now... WHY?"
             data = await response.json()
         return data['why']
     except (OSError, ConnectionError):
