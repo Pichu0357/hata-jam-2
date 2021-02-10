@@ -200,7 +200,7 @@ async def cat(client, event):
             if response.status != 200:
                 return "Couldn't contact the API right now..."
             data = await response.json()
-        return Embed(f"Here is your cat :cat:", color=CAT_COLOR).\
+        return Embed(f"Here is your cat {CAT_WAY:e}", color=CAT_COLOR).\
             add_image(data['url'])
     except (OSError, ConnectionError):
         return None
@@ -211,7 +211,7 @@ async def catfact(client, event, search: ('str', 'search using the keyword') = N
     """ask me purrr!"""
 
     if search is None:
-        yield Embed("Here is your cat fact :cat:", description=choice(CAT_FACTS), color=CAT_FACT_COLOR)
+        yield Embed(f"Here is your cat fact {CAT_WAY:e}", description=choice(CAT_FACTS), color=CAT_FACT_COLOR)
 
     else:
         # bot is thinking... :p

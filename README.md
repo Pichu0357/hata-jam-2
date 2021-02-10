@@ -11,7 +11,9 @@ Token = ''              # bot token (str).
 APPLICATION_ID = 0      # application id (int).
 GUILD_ID = 0            # guild id for slash commands (int).
 CAT_SAD = 0             # sad cat emoji's id (int).
-NEKO_PEEK = 0           # neko peek emoji's id (int).
+CAT_WAY = 0		# cat emoji's id (int).
+NEKOGIRL_PEEK = 0	# nekogirl peek emoji's id (int).
+NEOGIRL_KISS = 0	# nekogirl kiss emoji's id (int). 
 ```
 
 
