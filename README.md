@@ -14,7 +14,7 @@ CAT_FISH = 0		# cat fish emoji's id (int).
 CAT_SAD = 0             # sad cat emoji's id (int).
 CAT_WAY = 0		# cat emoji's id (int).
 NEKOGIRL_PEEK = 0	# nekogirl peek emoji's id (int).
-NEOGIRL_KISS = 0	# nekogirl kiss emoji's id (int). 
+NEKOGIRL_KISS = 0	# nekogirl kiss emoji's id (int). 
 ```
 
 
